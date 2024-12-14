@@ -1,15 +1,15 @@
 services:
-  # backend:
-  #   build:
-  #     context: .
-  #   ports:
-  #     - "8000:8000"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - app-network
-  #   env_file:
-  #     - .env
+  backend:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+    env_file:
+      - .env
 
   postgres:
     image: postgres:16.4
