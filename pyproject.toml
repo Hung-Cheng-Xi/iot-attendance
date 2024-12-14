@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "iot-attendance"
+version = "0.1.0"
+description = ""
+authors = ["Hung-Cheng-Xi <11146062@ntub.edu.tw>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.7"
+fastapi = { extras = ["standard"], version = "^0.115.6" }
+sqlmodel = "^0.0.22"
+pydantic-settings = "^2.7.0"
+alembic = "^1.14.0"
+
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+black = "^24.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 79
+target-version = ['py312']
+
+
+[tool.isort]
+profile = "black"
+line_length = 79
+known_third_party = ["requests", "sqlalchemy"]
+known_first_party = ["app"]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true

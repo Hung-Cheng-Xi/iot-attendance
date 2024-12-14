@@ -1,0 +1,26 @@
+services:
+  # backend:
+  #   build:
+  #     context: .
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - app-network
+  #   env_file:
+  #     - .env
+
+  postgres:
+    image: postgres:16.4
+    container_name: iot_attendance_db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
