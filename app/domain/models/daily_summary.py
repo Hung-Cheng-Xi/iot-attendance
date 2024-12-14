@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from enum import Enum
 from typing import TYPE_CHECKING, Optional
 
@@ -26,17 +26,18 @@ class DailySummary(SQLModel, table=True):
     __tablename__ = "daily_summaries"
 
     id: int = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="user.id")
-    date: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc).date()
-    )
+    statistics_date: date
     total_hours: float
     status: WorkStatusEnum = Field(
         default=WorkStatusEnum.normal, description="工作狀態"
     )
     overtime_hours: Optional[float]  # 加班時數
     created_at: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc)
+        default_factory=lambda: datetime.now(timezone.utc).astimezone(
+            timezone(timedelta(hours=8))
+        ),
+        sa_column_kwargs={"server_default": "now()"},
     )
 
+    user_id: int = Field(foreign_key="user.id")
     user: "User" = Relationship(back_populates="daily_summaries")
