@@ -6,7 +6,9 @@ def configure_logging():
         "version": 1,
         "formatters": {
             "simpleFormatter": {
-                "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+                "format": (
+                    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+                ),
                 "datefmt": "%Y-%m-%d %H:%M:%S",
             },
             "uvicornFormatter": {

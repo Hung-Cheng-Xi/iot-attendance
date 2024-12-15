@@ -37,6 +37,8 @@ class User(SQLModel, table=True):
         back_populates="users",
         sa_relationship_kwargs={
             "primaryjoin": "User.id == UserPermissionLink.user_id",
-            "secondaryjoin": "Permission.id == UserPermissionLink.permission_id",
+            "secondaryjoin": (
+                "Permission.id == UserPermissionLink.permission_id"
+            ),
         },
     )

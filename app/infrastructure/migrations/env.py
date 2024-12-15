@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlmodel import SQLModel
 
 from app.core.database import get_database_url
-from app.domain.models import *
+from app.domain.models import *  # noqa
 
 config = context.config
 
