@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime
 from enum import Enum
 from typing import TYPE_CHECKING, Optional
 
@@ -32,10 +32,8 @@ class DailySummary(SQLModel, table=True):
         default=WorkStatusEnum.normal, description="工作狀態"
     )
     overtime_hours: Optional[float]  # 加班時數
-    created_at: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc).astimezone(
-            timezone(timedelta(hours=8))
-        ),
+    created_datetime: datetime = Field(
+        default_factory=lambda: datetime.now(),
         sa_column_kwargs={"server_default": "now()"},
     )
 

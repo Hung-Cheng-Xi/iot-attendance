@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from enum import Enum
 from typing import TYPE_CHECKING
 
@@ -25,9 +25,7 @@ class Checkin(SQLModel, table=True):
 
     id: int = Field(default=None, primary_key=True)
     timestamp: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc).astimezone(
-            timezone(timedelta(hours=8))
-        ),
+        default_factory=lambda: datetime.now(),
         sa_column_kwargs={"server_default": "now()"},
     )
     type: CheckEnum = Field(default=CheckEnum.checkin, description="打卡類型")

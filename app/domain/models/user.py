@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime
 from typing import List, Optional
 
 from sqlmodel import Field, Relationship, SQLModel
@@ -20,10 +20,8 @@ class User(SQLModel, table=True):
     department: Optional[str]  # 部門
     hire_date: Optional[date]  # 入職日期
     hourly_rate: float = Field(default=0)  # 時薪
-    created_at: datetime = Field(
-        default_factory=lambda: datetime.now(timezone.utc).astimezone(
-            timezone(timedelta(hours=8))
-        ),
+    created_datetime: datetime = Field(
+        default_factory=lambda: datetime.now(),
         sa_column_kwargs={"server_default": "now()"},
     )
 
