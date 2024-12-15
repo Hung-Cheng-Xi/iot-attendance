@@ -1,6 +1,6 @@
 FROM ghcr.io/astral-sh/uv:latest as uv-stage
 
-FROM python:3.12
+FROM python:3.12.7
 
 WORKDIR /app
 
