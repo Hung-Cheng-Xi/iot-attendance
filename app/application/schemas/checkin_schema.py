@@ -36,6 +36,4 @@ class CreateCheckin(SQLModel):
 	包含需要提交的所有字段。
 	"""
 
-	type: 'CheckEnum'
-
-	user_id: int
+	rfid: str

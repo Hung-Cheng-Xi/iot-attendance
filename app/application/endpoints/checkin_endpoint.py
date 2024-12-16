@@ -3,7 +3,8 @@ from typing import Annotated, List
 
 from fastapi import APIRouter, Depends
 
-from app.application.schemas.checkin_schema import CheckinInfo, CreateCheckin
+from app.application.schemas.checkin_schema import CheckinInfo
+from app.domain.services.checkin_service import CheckinService
 from app.infrastructure.repositories.checkin_repository import (
 	CheckinRepository,
 )
@@ -31,8 +32,8 @@ async def get_checkins(
 	description='新增一筆新的打卡紀錄資料。',
 )
 async def create_checkin(
-	repository: Annotated[CheckinRepository, Depends()],
-	new_checkin: CreateCheckin,
+	service: Annotated[CheckinService, Depends()],
+	rfid: str,
 ) -> CheckinInfo:
 	logging.info('新增一筆 Checkin 資料到資料庫')
-	return await repository.create_checkin(new_checkin)
+	return await service.create_checkin(rfid)

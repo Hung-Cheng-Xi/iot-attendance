@@ -5,10 +5,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import joinedload
 from sqlmodel import select
 
-from app.application.schemas.checkin_schema import CheckinInfo, CreateCheckin
+from app.application.schemas.checkin_schema import CheckinInfo
 from app.core.database import get_db_session
 from app.domain.models.checkin import Checkin
-from app.domain.models.user import User
 from app.infrastructure.repositories.base_repository import BaseRepository
 
 
@@ -16,16 +15,9 @@ class CheckinRepository(BaseRepository[Checkin]):
 	def __init__(self, session: AsyncSession = Depends(get_db_session)):
 		super().__init__(session)
 
-	async def create_checkin(self, new_checkin: CreateCheckin) -> CheckinInfo:
+	async def create_checkin(self, new_checkin: Checkin) -> Checkin:
 		"""新增一個 Checkin 到資料庫"""
-		checkin = await self.create_instance(
-			Checkin(**new_checkin.model_dump())
-		)
-
-		user = await self.get_by_id(checkin.user_id, User)
-		checkin.user = user
-
-		return CheckinInfo.model_validate(checkin)
+		return await self.create_instance(new_checkin)
 
 	async def get_checkin(self, checkin_id: int) -> CheckinInfo:
 		"""根據 Checkin ID 取得 Checkin 資料"""

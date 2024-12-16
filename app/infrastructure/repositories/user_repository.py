@@ -22,9 +22,13 @@ class UserRepository(BaseRepository[User]):
 	async def create_user(self, new_user: CreateUser) -> UserInfo:
 		"""新增一個 User 到資料庫"""
 		user = await self.create_instance(User(**new_user.model_dump()))
-		statement = select(User).where(User.id == user.id).options(
-			selectinload(User.checkins),
-			selectinload(User.daily_summaries),
+		statement = (
+			select(User)
+			.where(User.id == user.id)
+			.options(
+				selectinload(User.checkins),
+				selectinload(User.daily_summaries),
+			)
 		)
 
 		user = (await self.session.execute(statement)).scalars().first()

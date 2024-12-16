@@ -14,7 +14,7 @@ class UserInfo(SQLModel):
 	position: Optional[str]
 	department: Optional[str]
 	hire_date: Optional[date]
-	permission: "PermissionEnum"
+	permission: 'PermissionEnum'
 
 	id: int
 	checkins: List['Checkin'] = []
@@ -27,7 +27,7 @@ class CreateUser(SQLModel):
 	position: Optional[str]
 	department: Optional[str]
 	hire_date: Optional[date]
-	permission: "PermissionEnum"
+	permission: 'PermissionEnum'
 
 
 class UpdateUser(SQLModel):
@@ -36,4 +36,4 @@ class UpdateUser(SQLModel):
 	position: Optional[str]
 	department: Optional[str]
 	hire_date: Optional[date]
-	permission: "PermissionEnum"
+	permission: 'PermissionEnum'
