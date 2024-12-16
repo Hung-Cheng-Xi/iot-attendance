@@ -2,7 +2,7 @@
 
 ## 專案介紹
 
-本專案為配合 ESP32 的 RFID 以及 Node-RED 所開發的 FastAPI 後端專案。此專案旨在提供一個高效能且易於使用的後端服務，用於管理和記錄打卡數據。
+本專案為配合 ESP32 的 RFID 所開發的專案。此專案旨在提供一個高效能且易於使用的前後端服務，用於管理和記錄打卡數據。
 
 ## 安裝與使用
 
@@ -13,20 +13,21 @@
 
 ### 安裝步驟
 
-1. 克隆此專案到本地端：
-    ```sh
-    git clone <repository-url>
-    ```
-2. 進入專案目錄：
-    ```sh
-    cd iot-attendance
-    ```
-3. 使用 Poetry 安裝依賴：
-    ```sh
+#### backend
+```bash
+    cd iot-attendance/backend
+    poetry shell
     poetry install
-    ```
+```
 
+#### frontend
+```bash
+    cd iot-attendance/frontend
+    npm i
+```
 ### 啟動專案
+
+#### backend
 
 1. 啟動 FastAPI 伺服器：
     ```sh
@@ -36,6 +37,19 @@
 2. 伺服器啟動後，可透過以下網址訪問 API 文件（若啟用）：
     - Swagger UI: `http://localhost:8000/docs`
     - ReDoc: `http://localhost:8000/redoc`
+
+#### frontend
+1.須先前往 package.json 找到 script start 設定將內容修改成自己本地的檔案路徑
+```bash
+# pwd 指令列出當前路徑並進行替換
+"scripts": {
+    "start": "node-red --userDir /Users/hongchengxi/Documents/iot/iot-attendance/frontend"
+},
+```
+2.替換完成後則可運行啟動
+```bash
+npm run start
+```
 
 ## 主要功能
 
