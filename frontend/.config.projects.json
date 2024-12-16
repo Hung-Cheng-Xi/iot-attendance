@@ -1,0 +1,8 @@
+{
+    "projects": {
+        "rfid-device": {
+            "credentialSecret": false
+        }
+    },
+    "activeProject": "rfid-device"
+}

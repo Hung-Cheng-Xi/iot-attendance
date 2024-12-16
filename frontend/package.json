@@ -1,0 +1,13 @@
+{
+    "name": "node-red-project",
+    "description": "A Node-RED Project",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node-red --userDir /Users/hongchengxi/Documents/iot/iot-attendance/frontend"
+    },
+    "dependencies": {
+        "@flowfuse/node-red-dashboard": "~1.20.0",
+        "node-red-node-sqlite": "~1.1.0"
+    }
+}
