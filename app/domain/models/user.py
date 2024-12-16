@@ -11,12 +11,12 @@ from app.domain.models.daily_summary import DailySummary
 class PermissionEnum(str, Enum):
 	"""
 	Attributes:
-	    admin: admin
 	    user: user
+	    admin: admin
 	"""
 
-	admin = 'admin'
 	user = 'user'
+	admin = 'admin'
 
 
 # Users 表
@@ -29,6 +29,9 @@ class User(SQLModel, table=True):
 	position: Optional[str]  # 職位
 	department: Optional[str]  # 部門
 	hire_date: Optional[date]  # 入職日期
+	permission: PermissionEnum = Field(
+		default=PermissionEnum.user, description='權限'
+	)
 	created_datetime: datetime = Field(
 		default_factory=lambda: datetime.now(),
 		sa_column_kwargs={'server_default': 'now()'},
@@ -38,7 +41,3 @@ class User(SQLModel, table=True):
 	daily_summaries: List['DailySummary'] = Relationship(
 		back_populates='user'
 	)  # 每日工時總結
-
-	permission: PermissionEnum = Field(
-		default=PermissionEnum.user, description='權限'
-	)
